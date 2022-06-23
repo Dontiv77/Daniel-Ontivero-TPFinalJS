@@ -24,7 +24,7 @@ h1{
     width: 100%;
     padding-top: 20px;
     padding-left: 20px;
-    font-family: Arial, Helvetica, sans-serif; color: azure;
+    font-family: Arial, Helvetica, sans-serif; color: rgb(225, 248, 248);
     display:flex;
     justify-content:stretch;
 }
@@ -36,8 +36,13 @@ h1{
     border: 1px solid;
     margin: 7px;
     list-style: none;
-    background-color: rgb(16, 4, 68);text-align: center; padding: 4px;
+    color: white;
+    background-color: rgb(4, 58, 68);text-align: center; padding: 4px;
+}
+
+#detalleDeCompra h3{
+    color: white;   
 }
 h3 {
-    font-size:15px; color: rgb(211, 234, 253);
+    font-size:15px; color: rgb(1, 10, 17);
 }
