@@ -95,7 +95,7 @@ function clickBtnCalcular() {
         buttons: ["Seguir Comprando","El total de su compra es $"+ sumaTotal()],
     });
     let carTotal = document.getElementById("carTotal")
-    carTotal.innerHTML = (" El total de su compra es $" + sumaTotal())
+    carTotal.innerHTML = '<i class="fa-solid fa-cart-shopping"></i>' + (" El total de su compra es $" + sumaTotal())
 }  
 
 function clickBtnBorrar() {
