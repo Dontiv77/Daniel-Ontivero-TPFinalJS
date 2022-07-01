@@ -20,17 +20,17 @@ h1{
 }
 #detalleDeCompra {
     background-color: rgb(5, 68, 68);
-    height: 200px;
+    height: 160px;
     width: 100%;
-    padding-top: 20px;
+    padding-top: 0px;
     padding-left: 20px;
     font-family: Arial, Helvetica, sans-serif; color: rgb(225, 248, 248);
     display:flex;
     justify-content:stretch;
 }
 #detalleDeCompra img {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 }
 #detalleDeCompra li {
     border: 1px solid;
@@ -45,4 +45,9 @@ h1{
 }
 h3 {
     font-size:15px; color: rgb(1, 10, 17);
+}
+
+#carTotal{
+    background-color: black;
+    color: aliceblue;
 }

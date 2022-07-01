@@ -1,4 +1,5 @@
 window.onload = iniciar;
+
 // DOM
 /* let nombre = prompt("Por Favor Ingrese sus Datos")
 
@@ -16,7 +17,6 @@ contenedor.append(titulo)
 let listadoDeProductos = document.getElementById("listadoDeProductos")
 
 let carrito = []
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 function mostrarProductos() {
     products.forEach((product) => {
@@ -35,14 +35,17 @@ function mostrarProductos() {
         carritoVacio()
         buyButton.addEventListener("click", function () {
             carrito.push(product)
-            alert("Agregaste " + product.name + " al carrito")
+            swal({
+                text: "Agregaste 1 " + product.name + " al carrito",
+                icon: "success",
+                button: "OK",
+            });
+            
             detalleDeCompra.innerHTML = `` 
             mostrarCarrito()
             // ejemplo de desestructurarion de array
             const [a] = carrito
             console.log(a) 
-
-            
         }) 
     }) 
 } 
@@ -56,24 +59,15 @@ function mostrarCarrito() {
         <h3>$${product.price} </h3>
         <h3>${product.color}</h3>
         `
-        detalleDeCompra.appendChild(carro)
-        let btnQuitarProducto = document.getElementById("btnBorrar")
-        btnQuitarProducto.addEventListener("click", ()=>{
-            carrito = []
-            detalleDeCompra.innerHTML =``
-            sumaTotal()
-            carritoVacio() 
-        })
+        detalleDeCompra.appendChild(carro) 
         //Local Storage 
         localStorage.setItem("carrito", JSON.stringify(carrito))
         let storage = localStorage.getItem("carrito")
         console.log(JSON.parse(storage))
     })
 }
-//CARRITO VACIO: 
+//Carrito vacio: 
 const carritoVacio = () =>  carrito.length === 0 && (detalleDeCompra.innerHTML = ("El carrito esta vacio"))
-//const carritoVacio = carrito == 0 ? detalleDeCompra.innerHTML = ("El carrito esta vacio") : ""
-//if (!carrito.length) {detalleDeCompra.innerHTML = ("El carrito esta vacio")} 
 
 function sumaTotal (){
 const total = carrito.map((item) => parseInt(item.price)).reduce((carritoTotalPrice, currentItemPrice) => carritoTotalPrice + currentItemPrice, 0);
@@ -91,10 +85,37 @@ iniciar()
 // boton
 function iniciar(){
     let btnCalcular = document.getElementById("btnCalcular");
-    btnCalcular.addEventListener("click", clickBtnCalcular);    
+    btnCalcular.addEventListener("click", clickBtnCalcular); 
+    
+    let btnBorrar = document.getElementById("btnBorrar");
+    btnBorrar.addEventListener("click", clickBtnBorrar);
 }   
 function clickBtnCalcular() {
-    let btnCalcular = document.getElementById("btnCalcular")
-    btnCalcular = alert("el total es $ " + sumaTotal())
+    swal("¿Quiere terminar su compra?", {
+        buttons: ["Seguir Comprando","El total de su compra es $"+ sumaTotal()],
+    });
+    let carTotal = document.getElementById("carTotal")
+    carTotal.innerHTML = (" El total de su compra es $" + sumaTotal())
+}  
+
+function clickBtnBorrar() {
+    swal({
+        title: "Seguro que quiere eliminar su carrito?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            detalleDeCompra.innerHTML =``
+            carrito = []
+            sumaTotal()
+            carritoVacio() 
+            carTotal.innerHTML =``
+        swal("Listo! su carrito fue eliminado", {
+            icon: "success",
+        });
+        } 
+    });
 }  
 
