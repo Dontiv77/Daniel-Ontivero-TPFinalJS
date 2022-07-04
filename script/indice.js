@@ -8,7 +8,6 @@ const saludo = document.createElement('h1')
 saludo.textContent = "Hola " + nombre 
 bienvenida.append(saludo)
 let detalleDeCompra  = document.getElementById("detalleDeCompra") */
-
 const contenedor = document.getElementById("contenedor")
 const titulo = document.createElement('h1')
 titulo.textContent = "Bienvenido a Cascos Van Damme" 
@@ -40,17 +39,17 @@ function mostrarProductos() {
                 icon: "success",
                 button: "OK",
             });
-            
-            detalleDeCompra.innerHTML = `` 
             mostrarCarrito()
+            carTotal.innerHTML = "$ " + sumaTotal()
             // ejemplo de desestructurarion de array
             const [a] = carrito
             console.log(a) 
-        }) 
+        })         
     }) 
 } 
 // Carrito 
 function mostrarCarrito() {
+    detalleDeCompra.innerHTML = ``
     carrito.forEach((product) => {
         const carro = document.createElement("li")
         carro.innerHTML += ` 
@@ -58,6 +57,7 @@ function mostrarCarrito() {
         <h3>${product.name} </h3>
         <h3>$${product.price} </h3>
         <h3>${product.color}</h3>
+        <button id="btnEliminar"onclick="btnEliminar(${product.id})">Eliminar</button>
         `
         detalleDeCompra.appendChild(carro) 
         //Local Storage 
@@ -65,6 +65,7 @@ function mostrarCarrito() {
         let storage = localStorage.getItem("carrito")
         console.log(JSON.parse(storage))
     })
+
 }
 //Carrito vacio: 
 const carritoVacio = () =>  carrito.length === 0 && (detalleDeCompra.innerHTML = ("El carrito esta vacio"))
@@ -82,6 +83,7 @@ return total;
 //llamado a las funciones
 mostrarProductos()
 iniciar()
+
 // boton
 function iniciar(){
     let btnCalcular = document.getElementById("btnCalcular");
@@ -89,13 +91,14 @@ function iniciar(){
     
     let btnBorrar = document.getElementById("btnBorrar");
     btnBorrar.addEventListener("click", clickBtnBorrar);
+
 }   
 function clickBtnCalcular() {
     swal("¿Quiere terminar su compra?", {
         buttons: ["Seguir Comprando","El total de su compra es $"+ sumaTotal()],
     });
     let carTotal = document.getElementById("carTotal")
-    carTotal.innerHTML = '<i class="fa-solid fa-cart-shopping"></i>' + (" El total de su compra es $" + sumaTotal())
+    carTotal.innerHTML = " " +"El total de su compra es $" + sumaTotal()
 }  
 
 function clickBtnBorrar() {
@@ -118,4 +121,14 @@ function clickBtnBorrar() {
         } 
     });
 }  
+
+function btnEliminar(productId){
+    const item = carrito.find((product) => product.id ===productId)
+    const indice = carrito.indexOf(item)
+    carrito.splice(indice, 1)
+    sumaTotal()
+    mostrarCarrito()
+    carTotal.innerHTML = "$" + sumaTotal()
+    
+} 
 
