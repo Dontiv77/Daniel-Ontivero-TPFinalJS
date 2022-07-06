@@ -86,7 +86,7 @@ iniciar()
 const timeOut = () => {
     setTimeout(()=>{
         Swal.fire({
-            imageUrl: './Assets/img/Foto casco.JPG',
+            imageUrl: './Assets/img/FotoCasco.JPG',
             imageHeight: 180,
             text: "¡El Casco Salva Vidas!"
         })
