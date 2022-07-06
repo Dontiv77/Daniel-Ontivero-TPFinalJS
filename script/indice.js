@@ -69,7 +69,6 @@ function mostrarCarrito() {
 }
 //Carrito vacio: 
 const carritoVacio = () =>  carrito.length === 0 && (detalleDeCompra.innerHTML = ("El carrito esta vacio"))
-
 function sumaTotal (){
 const total = carrito.map((item) => parseInt(item.price)).reduce((carritoTotalPrice, currentItemPrice) => carritoTotalPrice + currentItemPrice, 0);
 return total;
@@ -83,15 +82,24 @@ return total;
 //llamado a las funciones
 mostrarProductos()
 iniciar()
-
-// boton
+//timeOut
+const timeOut = () => {
+    setTimeout(()=>{
+        Swal.fire({
+            imageUrl: './Assets/img/Foto casco.JPG',
+            imageHeight: 180,
+            text: "¡El Casco Salva Vidas!"
+        })
+    }, 7000);
+}
+timeOut()
+// Boton
 function iniciar(){
     let btnCalcular = document.getElementById("btnCalcular");
     btnCalcular.addEventListener("click", clickBtnCalcular); 
     
     let btnBorrar = document.getElementById("btnBorrar");
     btnBorrar.addEventListener("click", clickBtnBorrar);
-
 }   
 function clickBtnCalcular() {
     swal("¿Quiere terminar su compra?", {
@@ -131,4 +139,6 @@ function btnEliminar(productId){
     carTotal.innerHTML = "$" + sumaTotal()
     
 } 
+
+
 
