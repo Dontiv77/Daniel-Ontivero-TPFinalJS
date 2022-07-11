@@ -86,7 +86,7 @@ iniciar()
 const timeOut = () => {
     setTimeout(()=>{
         Swal.fire({
-            imageUrl: './Assets/img/FotoCasco.JPG',
+            imageUrl: './Assets/img/FotoCasco.jpg',
             imageHeight: 180,
             text: "¡El Casco Salva Vidas!"
         })
@@ -142,3 +142,43 @@ function btnEliminar(productId){
 
 
 
+fetch("https://jsonplaceholder.typicode.com/posts")
+.then((response)=>response.json())
+.then((json)=>console.log(json))
+
+const getDataByAJAX = () => {
+    $.ajax({
+        url: "https://swapi.dev/api/people",
+        success: function (result){
+            console.log("result: ",result)
+        },
+        error: (error) =>{
+            console.error(error);
+        }
+    });
+}
+
+getDataByAJAX()
+
+const fetchLocalData=()=>{
+    fetch('/data.json').then((response)=>response.json())
+    .then((result)=>{
+        renderTitle(result.contactoSection)
+    }).catch((err)=>{
+        console.error(err)
+    })
+}
+
+fetchLocalData()
+
+const rederContactSection = (body)=> {
+    console.log(body)
+}
+
+const renderTitle = (body)=>{
+    console.log(body)
+    let container = document.getElementById('contacto')
+    let title = document.createElement('p')
+    title.textContent ="Desarrollado por "+ body.contacto +" " + body.mail
+    container.append(title)
+}
