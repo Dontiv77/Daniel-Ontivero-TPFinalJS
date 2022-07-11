@@ -161,7 +161,7 @@ const getDataByAJAX = () => {
 getDataByAJAX()
 
 const fetchLocalData=()=>{
-    fetch('/data.json').then((response)=>response.json())
+    fetch('./data.json').then((response)=>response.json())
     .then((result)=>{
         renderTitle(result.contactoSection)
     }).catch((err)=>{
