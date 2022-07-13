@@ -31,4 +31,4 @@ const products = [
 
 //ejemplo de spread 
 const proximaLista = [...products, { id: 4 , category: "proximo casco", name:"sin definir ", price: "sin definir", img:"" ,color:"blanco" }]
-console.log(proximaLista)
+//console.log(proximaLista)

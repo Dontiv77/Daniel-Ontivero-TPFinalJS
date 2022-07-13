@@ -1,13 +1,5 @@
 window.onload = iniciar;
 
-// DOM
-/* let nombre = prompt("Por Favor Ingrese sus Datos")
-
-const bienvenida = document.getElementById("saludo")
-const saludo = document.createElement('h1')
-saludo.textContent = "Hola " + nombre 
-bienvenida.append(saludo)
-let detalleDeCompra  = document.getElementById("detalleDeCompra") */
 const contenedor = document.getElementById("contenedor")
 const titulo = document.createElement('h1')
 titulo.textContent = "Bienvenido a Cascos Van Damme" 
@@ -16,7 +8,7 @@ contenedor.append(titulo)
 let listadoDeProductos = document.getElementById("listadoDeProductos")
 
 let carrito = []
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function mostrarProductos() {
     products.forEach((product) => {
         let card = document.createElement("div")
@@ -41,9 +33,9 @@ function mostrarProductos() {
             });
             mostrarCarrito()
             carTotal.innerHTML = "$ " + sumaTotal()
-            // ejemplo de desestructurarion de array
+            
             const [a] = carrito
-            console.log(a) 
+            //console.log(a) 
         })         
     }) 
 } 
@@ -60,10 +52,10 @@ function mostrarCarrito() {
         <button id="btnEliminar"onclick="btnEliminar(${product.id})">Eliminar</button>
         `
         detalleDeCompra.appendChild(carro) 
-        //Local Storage 
+        
         localStorage.setItem("carrito", JSON.stringify(carrito))
         let storage = localStorage.getItem("carrito")
-        console.log(JSON.parse(storage))
+        //console.log(JSON.parse(storage))
     })
 
 }
@@ -140,17 +132,16 @@ function btnEliminar(productId){
     
 } 
 
-
-
-fetch("https://jsonplaceholder.typicode.com/posts")
-.then((response)=>response.json())
-.then((json)=>console.log(json))
+// ejemplo de fetch con una url 
+// fetch("https://jsonplaceholder.typicode.com/posts")
+// .then((response)=>response.json())
+// .then((json)=>console.log(json))
 
 const getDataByAJAX = () => {
     $.ajax({
         url: "https://swapi.dev/api/people",
         success: function (result){
-            console.log("result: ",result)
+            //console.log("result: ",result)
         },
         error: (error) =>{
             console.error(error);
@@ -172,11 +163,11 @@ const fetchLocalData=()=>{
 fetchLocalData()
 
 const rederContactSection = (body)=> {
-    console.log(body)
+    //console.log(body)
 }
 
 const renderTitle = (body)=>{
-    console.log(body)
+    //console.log(body)
     let container = document.getElementById('contacto')
     let title = document.createElement('p')
     title.textContent ="Desarrollado por "+ body.contacto +" " + body.mail
